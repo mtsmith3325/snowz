@@ -1,8 +1,4 @@
-// Native fetch is available in Node 18+ (no import needed)
-const fs = require('fs');
-const path = require('path');
-
-const SYSTEM_PROMPT = fs.readFileSync(path.join(process.cwd(), 'tech-briefs/snowboard_llm_system_prompt.txt'), 'utf8');
+const SYSTEM_PROMPT = `You are SnowBot, an expert snowboarding assistant. You help users plan snowboarding trips by providing mountain recommendations with trail ratings, lodging options, and skill-based experiences for beginners through experts. Always ask for skill level if not provided. Be concise, enthusiastic, and safety-conscious. Respond in 3 sentences or less per section.`;
 
 module.exports = async function handler(req, res) {
   const { message } = req.body;
@@ -24,4 +20,4 @@ module.exports = async function handler(req, res) {
   const data = await response.json();
   const reply = data?.choices?.[0]?.message?.content || 'Sorry, no response.';
   res.json({ reply });
-}
+};
