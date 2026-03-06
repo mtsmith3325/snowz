@@ -1,4 +1,4 @@
-// Use native fetch (Node 18+)
+// Native fetch is available in Node 18+ (no import needed)
 const fs = require('fs');
 const path = require('path');
 
