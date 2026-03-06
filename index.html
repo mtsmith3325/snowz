@@ -128,7 +128,7 @@
         responseArea.innerHTML = `<div style="font-family:'Noto Sans',sans-serif;font-size:14px;color:#9c9c9c;margin-bottom:4px;">SnowBot: <span style='color:#fff;font-weight:500;'>thinking ...</span></div>`;
 
         // Send to backend
-        const res = await fetch('http://localhost:3001/api/chat', {
+        const res = await fetch('/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: userText })
