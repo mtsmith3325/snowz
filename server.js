@@ -2,13 +2,12 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();console.log('API KEY LOADED:', process.env.GEMINI_API_KEY ? 'YES' : 'NO - KEY IS MISSING');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-const fs = require('fs');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const SYSTEM_PROMPT = fs.readFileSync('./tech-briefs/snowboard_llm_system_prompt.txt', 'utf8');
+const SYSTEM_PROMPT = `You are SnowBot, an expert snowboarding assistant. You help users plan snowboarding trips by providing mountain recommendations with trail ratings, lodging options, and skill-based experiences for beginners through experts. Always ask for skill level if not provided. Be concise, enthusiastic, and safety-conscious. Respond in 3 sentences or less per section.`;
 
 app.post('/api/chat', async (req, res) => {
   const { message } = req.body;
