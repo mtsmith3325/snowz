@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snowz Up</title>
     <link rel="icon" href="ac17d3aa57c7c536a88fdf55a1409a00.jpg" type="image/jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="snowz-up.css">
     <link rel="stylesheet" href="styles/weather-widget.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar">
@@ -24,47 +29,58 @@
             </button>
         </div>
         <div class="nav-menu" id="nav-menu">
-            <a href="#">Explore Mountains</a>
-            <a href="#">Set A Budget</a>
-            <a href="#">Plan The Trip</a>
+            <a href="#">My Past Trips</a>
+            <a href="#">My Budget Plan</a>
+            <a href="#">My Favorite Spots</a>
         </div>
     </nav>
-    <div class="container">
-        <div class="card">
-            <h1>SNOW<sup>z</sup> UP</h1>
-            <p class="sub-copy">Snowz is your personal powder matchmaker, dialing in the exact mountain experience you want, whether that's velvet-rope luxury or boots-in-the-snow simplicity.</p>
-            <button class="contact-btn">Find Your Mountain</button>
-            <!-- LLM Chat UI -->
-            <div id="chat-container" style="margin-top:32px;">
-                <div id="messages"></div>
-                <div id="input-row">
-                    <input id="user-input" type="text" placeholder="Ask me about snowboarding..."/>
-                    <button onclick="sendMessage()">Send</button>
-                </div>
-            </div>
-            <div id="skill-buttons" style="margin-top:16px;">
-                <button onclick="setSkill('Beginner')">🟢 Beginner</button>
-                <button onclick="setSkill('Intermediate')">🔵 Intermediate</button>
-                <button onclick="setSkill('Advanced')">⚫ Advanced</button>
-                <button onclick="setSkill('Expert')">💀 Expert</button>
+    <section class="hero-bg">
+        <img src="src/assets/imgs/snowz-img-hero.png" alt="Snowboarder Hero" class="hero-img-bg">
+        <div class="hero-card">
+            <div class="hero-inner">
+                <h1 class="bebas-neue-regular hero-headline">FIND YOUR MOUNTAIN</h1>
+                <p class="sub-copy">Snow<sup>z</sup> is your personal powder matchmaker, dialing in the exact mountain experience you want, whether that’s velvet-rope luxury or boots-in-the-snow simplicity.</p>
+                <form class="llm-search-form" autocomplete="off">
+                    <div class="llm-search-bar">
+                        <span class="llm-search-plus" id="llm-search-plus">+</span>
+                        <div class="llm-plus-menu" id="llm-plus-menu" style="display:none;">
+                            <div class="llm-plus-menu-item">Add photos & files</div>
+                            <hr class="llm-plus-divider" />
+                            <div class="llm-plus-menu-item">Thinking</div>
+                            <div class="llm-plus-menu-item">Deep research</div>
+                            <div class="llm-plus-menu-item">Shopping research</div>
+                            <div class="llm-plus-menu-item">Web search</div>
+                            <div class="llm-plus-menu-item more">More &rsaquo;</div>
+                        </div>
+                        <input type="text" class="llm-search-input" placeholder="What are you thinking?" aria-label="What are you thinking?" />
+                        <button type="submit" class="llm-search-send" aria-label="Send">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="14" cy="14" r="14" fill="#2196F3"/>
+                                <path d="M8 14h10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M15 10l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                <div id="llm-response-area" style="margin-top:24px;"></div>
             </div>
         </div>
-    </div>
+    </section>
+    <section class="llm-response-cards" id="llm-response-cards"></section>
     <section class="destinations">
-        <p class="destinations-subhead">Choose a destination.</p>
         <div class="destination-grid">
             <div class="destination-card">
-                <div class="destination-image"><img src="1.jpg" alt="West"></div>
+                <div class="destination-image"><img src="src/assets/imgs/1.jpg" alt="West"></div>
                 <h3>West</h3>
                 <button class="destination-btn">EAZY BREEZY</button>
             </div>
             <div class="destination-card">
-                <div class="destination-image"><img src="2.jpeg" alt="Central"></div>
+                <div class="destination-image"><img src="src/assets/imgs/2.jpg" alt="Central"></div>
                 <h3>Central</h3>
                 <button class="destination-btn">Go big</button>
             </div>
             <div class="destination-card">
-                <div class="destination-image"><img src="3.jpeg" alt="East"></div>
+                <div class="destination-image"><img src="src/assets/imgs/3.jpg" alt="East"></div>
                 <h3>East</h3>
                 <button class="destination-btn">Wicked</button>
             </div>
@@ -97,7 +113,49 @@
     </footer>
     <script src="data/locations.js"></script>
     <script src="scripts/weather-widget.js"></script>
+    <script>
+    // LLM Search UI functionality
+    const searchForm = document.querySelector('.llm-search-form');
+    const searchInput = document.querySelector('.llm-search-input');
+    const responseArea = document.getElementById('llm-response-area');
+
+    searchForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const userText = searchInput.value.trim();
+        if (!userText) return;
+
+        // Show bot thinking
+        responseArea.innerHTML = `<div style="font-family:'Noto Sans',sans-serif;font-size:14px;color:#9c9c9c;margin-bottom:4px;">SnowBot: <span style='color:#fff;font-weight:500;'>thinking ...</span></div>`;
+
+        // Send to backend
+        const res = await fetch('http://localhost:3001/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: userText })
+        });
+        const data = await res.json();
+        // Update bot card with response
+        responseArea.innerHTML = `<div style="font-family:'Noto Sans',sans-serif;font-size:14px;color:#9c9c9c;margin-bottom:4px;">SnowBot: <span style='color:#fff;font-weight:500;'>${data.reply}</span></div>`;
+        searchInput.value = '';
+    });
+    </script>
     <script src="app.js"></script>
+    <script>
+    // Toggle plus menu
+    const plusBtn = document.getElementById('llm-search-plus');
+    const plusMenu = document.getElementById('llm-plus-menu');
+    if (plusBtn && plusMenu) {
+        plusBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            plusMenu.style.display = plusMenu.style.display === 'none' ? 'block' : 'none';
+        });
+        document.addEventListener('click', (e) => {
+            if (!plusMenu.contains(e.target) && e.target !== plusBtn) {
+                plusMenu.style.display = 'none';
+            }
+        });
+    }
+    </script>
     <script>
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
@@ -123,14 +181,17 @@
 
         // Snow falling animation (continuous)
         const button = document.querySelector('.contact-btn');
+
         setInterval(() => {
             createSnowflake();
         }, 180);
 
-        // Zig-zag line animation on button click
-        button.addEventListener('click', () => {
-            drawZigzagLine();
-        });
+        // Zig-zag line animation on button click (guard for null)
+        if (button) {
+            button.addEventListener('click', () => {
+                drawZigzagLine();
+            });
+        }
 
         function createSnowflake() {
             const circle = document.createElement('div');
