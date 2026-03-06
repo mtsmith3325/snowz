@@ -1,4 +1,4 @@
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+// Use native fetch (Node 18+)
 const fs = require('fs');
 const path = require('path');
 
