@@ -6,7 +6,8 @@
     { "src": "index.html", "use": "@vercel/static" },
     { "src": "styles/(.*)", "use": "@vercel/static" },
     { "src": "snowz-up.css", "use": "@vercel/static" },
-    { "src": "style.css", "use": "@vercel/static" }
+    { "src": "style.css", "use": "@vercel/static" },
+    { "src": "src/assets/imgs/(.*)", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/chat", "dest": "/api/chat.js" },
