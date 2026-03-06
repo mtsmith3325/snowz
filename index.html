@@ -31,12 +31,23 @@
     </nav>
     <div class="container">
         <div class="card">
-            <div class="world-icon">
-                <img src="ac17d3aa57c7c536a88fdf55a1409a00.jpg" alt="Profile" class="circle-image">
-            </div>
             <h1>SNOW<sup>z</sup> UP</h1>
-            <p class="sub-copy">Snows Up is a snowboarding travel hub that helps riders discover top destinations, plan seamless mountain getaways, and chase the best snow conditions around the world.</p>
+            <p class="sub-copy">Snowz is your personal powder matchmaker, dialing in the exact mountain experience you want, whether that's velvet-rope luxury or boots-in-the-snow simplicity.</p>
             <button class="contact-btn">Find Your Mountain</button>
+            <!-- LLM Chat UI -->
+            <div id="chat-container" style="margin-top:32px;">
+                <div id="messages"></div>
+                <div id="input-row">
+                    <input id="user-input" type="text" placeholder="Ask me about snowboarding..."/>
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+            <div id="skill-buttons" style="margin-top:16px;">
+                <button onclick="setSkill('Beginner')">🟢 Beginner</button>
+                <button onclick="setSkill('Intermediate')">🔵 Intermediate</button>
+                <button onclick="setSkill('Advanced')">⚫ Advanced</button>
+                <button onclick="setSkill('Expert')">💀 Expert</button>
+            </div>
         </div>
     </div>
     <section class="destinations">
@@ -86,6 +97,7 @@
     </footer>
     <script src="data/locations.js"></script>
     <script src="scripts/weather-widget.js"></script>
+    <script src="app.js"></script>
     <script>
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;

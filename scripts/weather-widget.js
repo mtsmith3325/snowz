@@ -112,7 +112,7 @@ class WeatherWidget {
                 <div class="weather-condition">${weatherData.cloudCover}</div>
                 <div class="weather-details">
                     <div class="weather-stat">${this.getWindIcon()}<span>${weatherData.windSpeed} km/h ${weatherData.windDirection}</span></div>
-                    <div class="weather-stat">${this.getHumidityIcon()}<span>${weatherData.humidity}%</span></div>
+                    <div class="weather-stat">${this.getHumidityIcon()}<span>${weatherData.humidity.toString().replace('%', '')}%</span></div>
                 </div>
             </div>
         `;

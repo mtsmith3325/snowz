@@ -1,3 +1,295 @@
+.llm-plus-menu {
+    position: absolute;
+    left: 0;
+    top: 54px;
+    min-width: 220px;
+    background: #232323;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    padding: 10px 0;
+    z-index: 10;
+    color: #fff;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    animation: fadeIn 0.18s;
+}
+.llm-plus-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+.llm-plus-menu-item:hover {
+    background: #333;
+}
+.llm-plus-divider {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 8px 0;
+}
+.llm-plus-menu-item.more {
+    color: #aaa;
+    font-size: 0.98em;
+    justify-content: flex-end;
+}
+.llm-search-bar {
+    position: relative;
+}
+/* --- HERO CARD LAYOUT --- */
+/* --- HERO BACKGROUND IMAGE --- */
+.hero-bg {
+    position: relative;
+    width: 100vw;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: visible;
+    z-index: 0;
+}
+.hero-img-bg {
+    position: absolute;
+    top: 0%;
+    left: 60%;
+    transform: translateX(-100%);
+    width: 60vw;
+    max-width: 1120px;
+    height: 550px;
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+}
+.hero-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(24, 24, 24, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.8);
+    width: 100vw;
+    max-width: 1400px;
+    height: 420px;
+    top: 80px;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 0 32px 0;
+}
+.hero-card {
+    width: 90vw;
+    max-width: 1200px;
+    margin: 60px auto 0 auto;
+    background: #1818184b;
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.44);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 64px 0 64px 0;
+    position: relative;
+    z-index: 2;
+}
+.hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.hero-headline {
+    font-size: 4rem;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    color: #fff;
+    margin: 32px 0 18px 0;
+    letter-spacing: 0.04em;
+    text-align: center;
+}
+.llm-search-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+.llm-search-bar {
+    display: flex;
+    align-items: center;
+    background: #222;
+    border-radius: 24px;
+    padding: 0 0 0 16px;
+    width: 480px;
+    max-width: 90vw;
+    height: 48px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+.llm-search-plus {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-right: 12px;
+    opacity: 0.7;
+}
+.llm-search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    padding: 0 12px;
+    background: transparent;
+    color: #fff;
+    border-radius: 24px 0 0 24px;
+}
+.llm-search-mic, .llm-search-send {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 4px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+.llm-search-mic:active, .llm-search-send:active {
+    background: #e3e3e3;
+}
+.llm-response-cards {
+    width: 90vw;
+    max-width: 1200px;
+    margin: 32px auto 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    z-index: 1;
+}
+@media (max-width: 900px) {
+    .hero-headline {
+        font-size: 2.2rem;
+    }
+    .llm-search-bar {
+        width: 100%;
+        min-width: 0;
+    }
+    .hero-card {
+        padding: 32px 0 24px 0;
+    }
+    .llm-response-cards {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 600px) {
+    .hero-headline {
+        font-size: 1.3rem;
+    }
+    .hero-card {
+        padding: 18px 0 12px 0;
+    }
+    .llm-search-bar {
+        width: 100%;
+        min-width: 0;
+    }
+}
+/* --- HERO CHAT --- */
+.hero-chat {
+    width: 100vw;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 60px 0 0 2vw;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+}
+.hero-headline {
+    font-size: 4.2rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+    line-height: 1.05;
+}
+.chat-ui {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+}
+.chat-prompt {
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    opacity: 0.95;
+}
+.chat-form {
+    display: flex;
+    align-items: center;
+    width: 340px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    padding: 0 0 0 12px;
+}
+.chat-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    background: transparent;
+    color: #222;
+    border-radius: 24px 0 0 24px;
+}
+.chat-send {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 6px 0 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+.chat-send:active {
+        background: #e3e3e3;
+}
+@media (max-width: 900px) {
+    .hero-headline {
+        font-size: 2.5rem;
+    }
+    .chat-form {
+        width: 100%;
+        min-width: 0;
+    }
+    .hero-chat {
+        padding: 40px 0 0 4vw;
+    }
+}
+@media (max-width: 600px) {
+    .hero-headline {
+        font-size: 1.5rem;
+    }
+    .hero-chat {
+        padding: 24px 0 0 2vw;
+    }
+    .chat-form {
+        width: 100%;
+        min-width: 0;
+    }
+}
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +297,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: #000;
     min-height: 100vh;
     position: relative;
@@ -13,7 +305,7 @@ body {
 
 .navbar {
     position: fixed;
-    top: 16px;
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
@@ -24,9 +316,9 @@ body {
 }
 
 .logo {
-    background: transparent;
-    border-radius: 0;
-    padding: 0;
+    background: #000000;
+    border-radius: 0px;
+    padding: 4px 44px;
     font-size: 1.275rem;
     font-weight: 700;
     color: white;
@@ -50,7 +342,7 @@ body {
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: .08em;
 }
@@ -113,10 +405,11 @@ body {
 .nav-menu a {
     color: black;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 0.875rem;
     font-weight: 700;
     line-height: 1.5;
-    letter-spacing: 0.5px;
+    letter-spacing: 0px;
+    text-align: right;
 }
 
 .nav-menu a:hover {
@@ -177,11 +470,20 @@ body::before {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+
 h1 {
     font-size: 3.5rem;
     color: white;
     margin-bottom: 30px;
-    font-weight: 600;
+    font-weight: 400;
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 0.04em;
+}
+
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .sub-copy {
@@ -189,8 +491,9 @@ h1 {
     font-size: 0.75rem;
     line-height: 1.6;
     max-width: 420px;
-    margin: 0 auto 30px;
+    margin: 0 auto 30px auto;
     opacity: 0.9;
+    text-align: center;
 }
 
 .contact-btn {
@@ -279,6 +582,7 @@ h1 {
 }
 
 .destinations h2 {
+    font-family: "Bebas Neue", sans-serif;
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 8px;
@@ -325,7 +629,8 @@ h1 {
 }
 
 .destination-card h3 {
-    font-size: 1.25rem;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.5rem;
     font-weight: 700;
     color: white;
 }
@@ -404,8 +709,8 @@ h1 {
 .gondola {
     position: relative;
     width: 100%;
-    height: 60px;
-    margin: 10px auto 40px;
+    height: 40px;
+    margin: 10px auto 80px;
     pointer-events: none;
     z-index: 2;
 }
@@ -467,10 +772,10 @@ h1 {
 
 @keyframes gondola-move {
     0% {
-        transform: translateX(0);
+        transform: translateX(.01);
     }
     100% {
-        transform: translateX(calc(100% + 520px));
+        transform: translateX(calc(100% + 1024px));
     }
 }
 
