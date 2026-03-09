@@ -25,6 +25,7 @@ module.exports = async function handler(req, res) {
     })
   });
   const data = await response.json();
+  console.log('GROQ RESPONSE:', JSON.stringify(data));
   const reply = data?.choices?.[0]?.message?.content || 'Sorry, no response.';
   res.json({ reply });
 };
